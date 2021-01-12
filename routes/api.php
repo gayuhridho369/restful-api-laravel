@@ -13,34 +13,39 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/products', function () {
-    return response()->json(
-        [
-            "message" => "GET Method Success"
-        ]
-    );
-});
+Route::get('/products', 'ProductController@get');
+Route::post('/product', 'ProductController@post');
+Route::put('/product/{id}', 'ProductController@put');
+Route::delete('/product/{id}', 'ProductController@delete');
 
-Route::post('/product', function () {
-    return response()->json(
-        [
-            "message" => "POST Method Success"
-        ]
-    );
-});
+// Route::get('/products', function () {
+//     return response()->json(
+//         [
+//             "message" => "GET Method Success"
+//         ]
+//     );
+// });
 
-Route::put('/product/{id}', function ($id) {
-    return response()->json(
-        [
-            "message" => "PUT Method Success " . $id
-        ]
-    );
-});
+// Route::post('/product', function () {
+//     return response()->json(
+//         [
+//             "message" => "POST Method Success"
+//         ]
+//     );
+// });
 
-Route::delete('/product/{id}', function ($id) {
-    return response()->json(
-        [
-            "message" => "DELETE Method Success " . $id
-        ]
-    );
-});
+// Route::put('/product/{id}', function ($id) {
+//     return response()->json(
+//         [
+//             "message" => "PUT Method Success " . $id
+//         ]
+//     );
+// });
+
+// Route::delete('/product/{id}', function ($id) {
+//     return response()->json(
+//         [
+//             "message" => "DELETE Method Success " . $id
+//         ]
+//     );
+// });
