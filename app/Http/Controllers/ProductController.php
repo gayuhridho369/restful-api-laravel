@@ -80,10 +80,21 @@ class ProductController extends Controller
 
     function delete($id)
     {
+        $product = Product::where('id', $id)->first();
+
+        if ($product) {
+            $product->delete();
+            return response()->json(
+                [
+                    "message" => "DELETE Product id " . $id . " success"
+                ]
+            );
+        }
         return response()->json(
             [
-                "message" => "DELETE Method Success " . $id
-            ]
+                "message" => "Product with id " . $id . " not found"
+            ],
+            400
         );
     }
 }
