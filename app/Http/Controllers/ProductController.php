@@ -50,12 +50,31 @@ class ProductController extends Controller
         );
     }
 
-    function put($id)
+    function put($id, Request $request)
     {
+        $product = Product::where('id', $id)->first();
+        if ($product) {
+
+            $product->name = $request->name ? $request->name : $product->name;
+            $product->price = $request->price ? $request->price : $product->price;
+            $product->quantity = $request->quantity ? $request->quantity : $product->quantity;
+            $product->active = $request->active ? $request->active : $product->active;
+            $product->description = $request->description ? $request->description : $product->description;
+
+            $product->save();
+
+            return response()->json(
+                [
+                    "message" => "PUT Method Success",
+                    "data" => $product
+                ]
+            );
+        }
         return response()->json(
             [
-                "message" => "PUT Method Success " . $id
-            ]
+                "message" => "Product with id " . $id . " not found"
+            ],
+            400
         );
     }
 
