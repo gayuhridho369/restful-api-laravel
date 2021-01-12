@@ -9,9 +9,24 @@ class ProductController extends Controller
 {
     function get()
     {
+        $data = Product::all();
+
         return response()->json(
             [
-                "message" => "GET Method Success"
+                "message" => "Success",
+                "data" => $data
+            ]
+        );
+    }
+
+    function getById($id)
+    {
+        $data = Product::where('id', $id)->get();
+
+        return response()->json(
+            [
+                "message" => "Success",
+                "data" => $data
             ]
         );
     }
